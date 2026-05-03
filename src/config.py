@@ -1,11 +1,11 @@
 vocab_size = 128
-d_model = 96
-n_heads = 4
-n_layers = 4
-mlp_dim = 384
-context_length = 128
+d_model = 192
+n_heads = 6
+n_layers = 6
+mlp_dim = 768
+context_length = 256
 
-batch_size = 32
+batch_size = 16
 learning_rate = 1e-3
 max_iters = 16000
 eval_interval = 500
@@ -13,7 +13,7 @@ eval_iters = 200
 
 seed = 1337
 
-# Derived: approx 0.47M params with vocab=128
+# Derived: approx 3.5M params with vocab=4096
 
 checkpoint_dir = "checkpoints_bpe4096"
 tokenizer_type = "bpe"  # "char" or "bpe"
@@ -36,7 +36,7 @@ sample_prompts = [
 
 # SFT config
 sft_learning_rate = 1e-4
-sft_batch_size = 16
+sft_batch_size = 8
 sft_max_iters = 10000
 sft_eval_interval = 200
 sft_eval_iters = 50

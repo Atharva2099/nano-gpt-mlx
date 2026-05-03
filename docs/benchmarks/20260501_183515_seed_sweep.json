@@ -1,0 +1,123 @@
+{
+  "timestamp": "2026-05-01T18:35:15",
+  "tag": "seed_sweep",
+  "checkpoint_name": "latest.npz",
+  "num_runs": 3,
+  "val_loss_mean": 0.7730921864509582,
+  "val_loss_std": 0.002133469598557145,
+  "val_ppl_mean": 2.1664599203103108,
+  "val_ppl_std": 0.004622040146338241,
+  "runs": [
+    {
+      "checkpoint": "checkpoints/latest.npz",
+      "seed": 1337,
+      "params": 533632,
+      "d_model": 96,
+      "context_length": 128,
+      "eval_iters": 200,
+      "batch_size": 32,
+      "train": {
+        "loss": 0.7640584596991539,
+        "perplexity": 2.1469719620860657,
+        "bpc": 1.1023033507572293,
+        "top1_accuracy": 0.757037353515625,
+        "tokens_per_sec": 256721.4181411076
+      },
+      "val": {
+        "loss": 0.775700473189354,
+        "perplexity": 2.1721131014122013,
+        "bpc": 1.1190992258855033,
+        "top1_accuracy": 0.75408447265625,
+        "tokens_per_sec": 269030.918104752
+      },
+      "samples": [
+        {
+          "prompt": "Once upon a time",
+          "text": "Once upon a time, there was a little girl named Lily. She loved to play with her toys and draw pictures of a big pill. One day, she saw a big box with a big smile on her face. She was so happy that she could help her"
+        },
+        {
+          "prompt": "Lily and Tim went to",
+          "text": "Lily and Tim went to the park. They saw a big tree with a smile on the ground. The squirrel was so happy that they could have fun and have fun.\n\nOnce upon a time, there was a little girl named Lily. She loved to play wit"
+        },
+        {
+          "prompt": "The little cat was",
+          "text": "The little cat was so happy. The cat wanted to see the bird too.\nThe cat said, \"I want to play with my friends!\" The cat was so happy that the bird was so happy that the bird was safe and had a fun day together.\n\nOnce "
+        }
+      ]
+    },
+    {
+      "checkpoint": "checkpoints/latest.npz",
+      "seed": 42,
+      "params": 533632,
+      "d_model": 96,
+      "context_length": 128,
+      "eval_iters": 200,
+      "batch_size": 32,
+      "train": {
+        "loss": 0.7671980655193329,
+        "perplexity": 2.1537232003217723,
+        "bpc": 1.1068328445043476,
+        "top1_accuracy": 0.7565625,
+        "tokens_per_sec": 260577.10204507562
+      },
+      "val": {
+        "loss": 0.7704745861887932,
+        "perplexity": 2.1607914922827556,
+        "bpc": 1.1115598646255482,
+        "top1_accuracy": 0.756324462890625,
+        "tokens_per_sec": 261252.3630973209
+      },
+      "samples": [
+        {
+          "prompt": "Once upon a time",
+          "text": "Once upon a time, there was a little girl named Lily. She loved to play with her toys and draw pictures of a big pill. One day, she saw a big box with a big smile on her face. She was so happy that she could help her"
+        },
+        {
+          "prompt": "Lily and Tim went to",
+          "text": "Lily and Tim went to the park. They saw a big tree with a smile on the ground. The squirrel was so happy that they could have fun and have fun.\n\nOnce upon a time, there was a little girl named Lily. She loved to play wit"
+        },
+        {
+          "prompt": "The little cat was",
+          "text": "The little cat was so happy. The cat wanted to see the bird too.\nThe cat said, \"I want to play with my friends!\" The cat was so happy that the bird was so happy that the bird was safe and had a fun day together.\n\nOnce "
+        }
+      ]
+    },
+    {
+      "checkpoint": "checkpoints/latest.npz",
+      "seed": 7,
+      "params": 533632,
+      "d_model": 96,
+      "context_length": 128,
+      "eval_iters": 200,
+      "batch_size": 32,
+      "train": {
+        "loss": 0.7667743802070618,
+        "perplexity": 2.1528108927144127,
+        "bpc": 1.1062215958054367,
+        "top1_accuracy": 0.756182861328125,
+        "tokens_per_sec": 241875.2483569464
+      },
+      "val": {
+        "loss": 0.7731014999747277,
+        "perplexity": 2.166475167235975,
+        "bpc": 1.1153497001173587,
+        "top1_accuracy": 0.755177001953125,
+        "tokens_per_sec": 260775.7391105567
+      },
+      "samples": [
+        {
+          "prompt": "Once upon a time",
+          "text": "Once upon a time, there was a little girl named Lily. She loved to play with her toys and draw pictures of a big pill. One day, she saw a big box with a big smile on her face. She was so happy that she could help her"
+        },
+        {
+          "prompt": "Lily and Tim went to",
+          "text": "Lily and Tim went to the park. They saw a big tree with a smile on the ground. The squirrel was so happy that they could have fun and have fun.\n\nOnce upon a time, there was a little girl named Lily. She loved to play wit"
+        },
+        {
+          "prompt": "The little cat was",
+          "text": "The little cat was so happy. The cat wanted to see the bird too.\nThe cat said, \"I want to play with my friends!\" The cat was so happy that the bird was so happy that the bird was safe and had a fun day together.\n\nOnce "
+        }
+      ]
+    }
+  ]
+}

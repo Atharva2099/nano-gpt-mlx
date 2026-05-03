@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-05-01T19:31:42",
+  "tag": "bpe1024_8k",
+  "checkpoint_name": "latest.npz",
+  "num_runs": 1,
+  "val_loss_mean": 2.0735650128126144,
+  "val_loss_std": 0.0,
+  "val_ppl_mean": 7.953125633241863,
+  "val_ppl_std": 0.0,
+  "runs": [
+    {
+      "checkpoint": "checkpoints_bpe1024/latest.npz",
+      "seed": 1337,
+      "params": 623680,
+      "d_model": 96,
+      "context_length": 128,
+      "eval_iters": 200,
+      "batch_size": 32,
+      "train": {
+        "loss": 2.020533580183983,
+        "perplexity": 7.542348307767839,
+        "bpc": 2.915013776081055,
+        "top1_accuracy": 0.52702880859375,
+        "tokens_per_sec": 219469.1461333279
+      },
+      "val": {
+        "loss": 2.0735650128126144,
+        "perplexity": 7.953125633241863,
+        "bpc": 2.9915219609456187,
+        "top1_accuracy": 0.519854736328125,
+        "tokens_per_sec": 239174.95961107462
+      },
+      "samples": [
+        {
+          "prompt": "Once upon a time",
+          "text": "Once upon a timey cat named Tom. Tom loved to play with his friends in the park. One day, Tom and his friends were playing in the park. They saw a big tree with a big, red ball.\nTom said, \"Let's play a game!\" So, they started to play together. But then, something unexpected happened. The ball was very hot and had a big message! Tom and his friends were scared and didn't know what to do.\nThen, Tom and his friends played with the ball. They had fun and laughed and had fun. They learned that it is important to be kind to each other. And they all lived happily ever after.\n\nOnce upon a time, there was a little girl named Lily. She loved to play outside in the sunshine. One day, she found a big box of crayons on the ground. She picked it up and put it in her hand. \nLily asked her mom if"
+        },
+        {
+          "prompt": "Lily and Tim went to",
+          "text": "Lily and Tim went to for a while. She saw a big, red ball in the yard. She wanted to play with it, but she was too small.\nShe asked her mom if they could play with the ball. Her mom said yes, but Lily didn't want to share. She said no. She said, \"No, I don't have to be careful. If you can't play with it.\"\nMom said, \"Don't worry, we will go home and take care of it.\" They went back to their house and had a fun day. The next day, they were playing together and having fun.\n\nOnce upon a time, there was a little girl named Lily. She loved to play outside in the park. One day, she found a big box in her room. She picked it up and showed it to her mom.\n\"Mommy, look what I found!\" said Lily.\n\"I'm going to see the box,\" said Lily."
+        },
+        {
+          "prompt": "The little cat was",
+          "text": "The little cat was and he felt very happy. He went to the park and found a big, red ball. The cat was very happy.\nBut then, something unexpected happened. The cat started to talk! The cat was scared and didn't know what to do. The cat saw the cat and wanted to help. They tried to get the ball back from the cat. The cat was so happy and thanked the cat. The cat and the cat became friends. They played together every day.\n\nOnce upon a time, there was a little girl named Lily. She loved to play outside in her garden. One day, she saw a big tree with a hole in it. She picked it up and showed it to her mom. Her mom said, \"Look, that's a hole in the ground!\"\nLily was sad because she had an idea. She asked her mom if they could have a suit on the ground. Her mom said yes and they were going to"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Data and checkpoints
+data/
+checkpoints/
+checkpoints_*/
+*.npz
+
+# Old tokenizer versions (preserved locally)
+artifacts/tokenizer_bpe256_v1/
+artifacts/tokenizer_bpe1024_v1/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+wandb/
+
+# OS
+Thumbs.db

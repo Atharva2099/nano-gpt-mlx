@@ -1,0 +1,123 @@
+{
+  "timestamp": "2026-05-01T19:04:52",
+  "tag": "bpe4096_8k_seed",
+  "checkpoint_name": "latest.npz",
+  "num_runs": 3,
+  "val_loss_mean": 2.2389427983760832,
+  "val_loss_std": 0.0037070300227955155,
+  "val_ppl_mean": 9.383470351240112,
+  "val_ppl_std": 0.03477464971338689,
+  "runs": [
+    {
+      "checkpoint": "checkpoints_bpe/latest.npz",
+      "seed": 1337,
+      "params": 918592,
+      "d_model": 96,
+      "context_length": 128,
+      "eval_iters": 200,
+      "batch_size": 32,
+      "train": {
+        "loss": 2.117203459739685,
+        "perplexity": 8.307871673345192,
+        "bpc": 3.0544789319193995,
+        "top1_accuracy": 0.511923828125,
+        "tokens_per_sec": 217645.6500911604
+      },
+      "val": {
+        "loss": 2.2393314707279206,
+        "perplexity": 9.387053669134392,
+        "bpc": 3.23067240772576,
+        "top1_accuracy": 0.497205810546875,
+        "tokens_per_sec": 214647.21230120305
+      },
+      "samples": [
+        {
+          "prompt": "Once upon a time",
+          "text": "Once upon a time, there was a little girl named Lily. She loved to play outside in the park with her friends. One day, while playing, she found a big, scary monster appeared. The monster was scared and didn't know what to do.\nLily's mom saw that it was okay and they were not scared anymore. They told her that it's important to be careful when we try to catch things. So, they decided to take turns and have fun together. When they got home, Lily felt happy that she could help her mom.\nFrom that day on, Lily learned that sometimes things can be dangerous, but it's important to always try new things. And whenever she tried to make sure if something may seems happen, you can still be very sad.\n\nOnce upon a time, there was a little boy named Timmy. He loved to play with his toys and run around outside. One day, he went to the park to play with his friends. They played in the park"
+        },
+        {
+          "prompt": "Lily and Tim went to",
+          "text": "Lily and Tim went to. He saw a big, red ball near the pond. The ball was very high and had many colors.\n\"Wow, Tim! You are so good!\" said the ball. \"I like to play with you, Tim.\"\nTim and Tim played together all day. They had fun. But then, something unexpected happened. The ball started to move! It rolled down the hill and Tim could not get the ball back. Tim and Tim were sad. They did not want to lose the ball anymore.\n\nOnce upon a time, there was a little girl named Lily. She loved to play outside in the park with her friends. One day, she found a big rock that was very pretty. She picked it up and showed it to her friends. \nHer friend, Timmy, came over to play. He said, \"Wow, that's a missile! Can I have it?\" Lily replied, \"No, it's mine now.\" Timmy felt sad for Billy. He"
+        },
+        {
+          "prompt": "The little cat was",
+          "text": "The little cat was. The cat wanted to help the cat.\nThe cat said, \"I will help you.\" The cat said, \"Okay, I will help you.\" They looked around the house and found a big, red ball. The cat was very happy. He said, \"Thank you, cat!\" The cat said, \"You are welcome, cat! You are very good friends.\"\nThe cat and the cat became best friends. They played together every day. And they lived happily ever after.\n\nOnce upon a time, there was a little girl named Lily. She loved to play with her toys and make things with her toys. One day, she went to the park to play with her friends. They saw a big tree with lots of leaves. Lily thought it would be fun to jump in the tree.\nLily's friend, Timmy, came over to play. They played on the swings and had so much fun. But then, something unexpected happened. The wind blew all the"
+        }
+      ]
+    },
+    {
+      "checkpoint": "checkpoints_bpe/latest.npz",
+      "seed": 42,
+      "params": 918592,
+      "d_model": 96,
+      "context_length": 128,
+      "eval_iters": 200,
+      "batch_size": 32,
+      "train": {
+        "loss": 2.125325047969818,
+        "perplexity": 8.375619523829398,
+        "bpc": 3.066195906983155,
+        "top1_accuracy": 0.51014892578125,
+        "tokens_per_sec": 222514.85646387265
+      },
+      "val": {
+        "loss": 2.234220790863037,
+        "perplexity": 9.339201824839208,
+        "bpc": 3.2232992552291213,
+        "top1_accuracy": 0.497471923828125,
+        "tokens_per_sec": 213340.21272590267
+      },
+      "samples": [
+        {
+          "prompt": "Once upon a time",
+          "text": "Once upon a time, there was a little girl named Lily. She loved to play outside in the park with her friends. One day, while playing, she found a big, scary monster appeared. The monster was scared and didn't know what to do.\nLily's mom saw that it was okay and they were not scared anymore. They told her that it's important to be careful when we try to catch things. So, they decided to take turns and have fun together. When they got home, Lily felt happy that she could help her mom.\nFrom that day on, Lily learned that sometimes things can be dangerous, but it's important to always try new things. And whenever she tried to make sure if something may seems happen, you can still be very sad.\n\nOnce upon a time, there was a little boy named Timmy. He loved to play with his toys and run around outside. One day, he went to the park to play with his friends. They played in the park"
+        },
+        {
+          "prompt": "Lily and Tim went to",
+          "text": "Lily and Tim went to. He saw a big, red ball near the pond. The ball was very high and had many colors.\n\"Wow, Tim! You are so good!\" said the ball. \"I like to play with you, Tim.\"\nTim and Tim played together all day. They had fun. But then, something unexpected happened. The ball started to move! It rolled down the hill and Tim could not get the ball back. Tim and Tim were sad. They did not want to lose the ball anymore.\n\nOnce upon a time, there was a little girl named Lily. She loved to play outside in the park with her friends. One day, she found a big rock that was very pretty. She picked it up and showed it to her friends. \nHer friend, Timmy, came over to play. He said, \"Wow, that's a missile! Can I have it?\" Lily replied, \"No, it's mine now.\" Timmy felt sad for Billy. He"
+        },
+        {
+          "prompt": "The little cat was",
+          "text": "The little cat was. The cat wanted to help the cat.\nThe cat said, \"I will help you.\" The cat said, \"Okay, I will help you.\" They looked around the house and found a big, red ball. The cat was very happy. He said, \"Thank you, cat!\" The cat said, \"You are welcome, cat! You are very good friends.\"\nThe cat and the cat became best friends. They played together every day. And they lived happily ever after.\n\nOnce upon a time, there was a little girl named Lily. She loved to play with her toys and make things with her toys. One day, she went to the park to play with her friends. They saw a big tree with lots of leaves. Lily thought it would be fun to jump in the tree.\nLily's friend, Timmy, came over to play. They played on the swings and had so much fun. But then, something unexpected happened. The wind blew all the"
+        }
+      ]
+    },
+    {
+      "checkpoint": "checkpoints_bpe/latest.npz",
+      "seed": 7,
+      "params": 918592,
+      "d_model": 96,
+      "context_length": 128,
+      "eval_iters": 200,
+      "batch_size": 32,
+      "train": {
+        "loss": 2.120307306647301,
+        "perplexity": 8.333698095042914,
+        "bpc": 3.0589568364606956,
+        "top1_accuracy": 0.511494140625,
+        "tokens_per_sec": 189958.7901722225
+      },
+      "val": {
+        "loss": 2.2432761335372926,
+        "perplexity": 9.424155559746733,
+        "bpc": 3.2363633531988203,
+        "top1_accuracy": 0.495877685546875,
+        "tokens_per_sec": 197422.79907095662
+      },
+      "samples": [
+        {
+          "prompt": "Once upon a time",
+          "text": "Once upon a time, there was a little girl named Lily. She loved to play outside in the park with her friends. One day, while playing, she found a big, scary monster appeared. The monster was scared and didn't know what to do.\nLily's mom saw that it was okay and they were not scared anymore. They told her that it's important to be careful when we try to catch things. So, they decided to take turns and have fun together. When they got home, Lily felt happy that she could help her mom.\nFrom that day on, Lily learned that sometimes things can be dangerous, but it's important to always try new things. And whenever she tried to make sure if something may seems happen, you can still be very sad.\n\nOnce upon a time, there was a little boy named Timmy. He loved to play with his toys and run around outside. One day, he went to the park to play with his friends. They played in the park"
+        },
+        {
+          "prompt": "Lily and Tim went to",
+          "text": "Lily and Tim went to. He saw a big, red ball near the pond. The ball was very high and had many colors.\n\"Wow, Tim! You are so good!\" said the ball. \"I like to play with you, Tim.\"\nTim and Tim played together all day. They had fun. But then, something unexpected happened. The ball started to move! It rolled down the hill and Tim could not get the ball back. Tim and Tim were sad. They did not want to lose the ball anymore.\n\nOnce upon a time, there was a little girl named Lily. She loved to play outside in the park with her friends. One day, she found a big rock that was very pretty. She picked it up and showed it to her friends. \nHer friend, Timmy, came over to play. He said, \"Wow, that's a missile! Can I have it?\" Lily replied, \"No, it's mine now.\" Timmy felt sad for Billy. He"
+        },
+        {
+          "prompt": "The little cat was",
+          "text": "The little cat was. The cat wanted to help the cat.\nThe cat said, \"I will help you.\" The cat said, \"Okay, I will help you.\" They looked around the house and found a big, red ball. The cat was very happy. He said, \"Thank you, cat!\" The cat said, \"You are welcome, cat! You are very good friends.\"\nThe cat and the cat became best friends. They played together every day. And they lived happily ever after.\n\nOnce upon a time, there was a little girl named Lily. She loved to play with her toys and make things with her toys. One day, she went to the park to play with her friends. They saw a big tree with lots of leaves. Lily thought it would be fun to jump in the tree.\nLily's friend, Timmy, came over to play. They played on the swings and had so much fun. But then, something unexpected happened. The wind blew all the"
+        }
+      ]
+    }
+  ]
+}

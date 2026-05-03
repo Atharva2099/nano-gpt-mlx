@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-05-01T18:34:43",
+  "tag": "char_baseline",
+  "checkpoint_name": "latest.npz",
+  "num_runs": 1,
+  "val_loss_mean": 0.775700473189354,
+  "val_loss_std": 0.0,
+  "val_ppl_mean": 2.1721131014122013,
+  "val_ppl_std": 0.0,
+  "runs": [
+    {
+      "checkpoint": "checkpoints/latest.npz",
+      "seed": 1337,
+      "params": 533632,
+      "d_model": 96,
+      "context_length": 128,
+      "eval_iters": 200,
+      "batch_size": 32,
+      "train": {
+        "loss": 0.7640584596991539,
+        "perplexity": 2.1469719620860657,
+        "bpc": 1.1023033507572293,
+        "top1_accuracy": 0.757037353515625,
+        "tokens_per_sec": 248593.24790709082
+      },
+      "val": {
+        "loss": 0.775700473189354,
+        "perplexity": 2.1721131014122013,
+        "bpc": 1.1190992258855033,
+        "top1_accuracy": 0.75408447265625,
+        "tokens_per_sec": 270662.62881583255
+      },
+      "samples": [
+        {
+          "prompt": "Once upon a time",
+          "text": "Once upon a time, there was a little girl named Lily. She loved to play with her toys and draw pictures of a big pill. One day, she saw a big box with a big smile on her face. She was so happy that she could help her"
+        },
+        {
+          "prompt": "Lily and Tim went to",
+          "text": "Lily and Tim went to the park. They saw a big tree with a smile on the ground. The squirrel was so happy that they could have fun and have fun.\n\nOnce upon a time, there was a little girl named Lily. She loved to play wit"
+        },
+        {
+          "prompt": "The little cat was",
+          "text": "The little cat was so happy. The cat wanted to see the bird too.\nThe cat said, \"I want to play with my friends!\" The cat was so happy that the bird was so happy that the bird was safe and had a fun day together.\n\nOnce "
+        }
+      ]
+    }
+  ]
+}

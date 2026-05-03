@@ -21,7 +21,7 @@ bpe_tokenizer_path = "artifacts/tokenizer_bpe4096/tokenizer.json"
 
 sample_temperature = 0.8
 sample_top_k = 20
-sample_repetition_penalty = 1.1
+sample_repetition_penalty = 1.3
 sample_count = 3
 sample_max_new_tokens = 200
 sample_prompt = "Once upon a time"

@@ -5,61 +5,104 @@ import os
 from datasets import load_dataset
 
 
-def pick_first(row, keys):
-    for k in keys:
-        v = row.get(k)
-        if isinstance(v, str) and v.strip():
-            return v.strip()
-    return ""
+def parse_stories(ds_split):
+    """
+    TinyStoriesInstruct is a flat sequence of text lines.
+    Each story block looks like:
+
+        Features: Dialogue
+        Words: quit, oak, gloomy
+        Summary: ...
+        Story:
+        [blank]
+        Once upon a time...
+        ...
+        <|endoftext|>
+
+    We group rows between <|endoftext|> markers into single (prompt, response) pairs.
+    """
+    stories = []
+    current_lines = []
+
+    for row in ds_split:
+        line = row.get("text", "").strip()
+        if line == "<|endoftext|>":
+            if current_lines:
+                parsed = _build_record(current_lines)
+                if parsed:
+                    stories.append(parsed)
+                current_lines = []
+        else:
+            current_lines.append(line)
+
+    # trailing block without <|endoftext|>
+    if current_lines:
+        parsed = _build_record(current_lines)
+        if parsed:
+            stories.append(parsed)
+
+    return stories
 
 
-def to_record(row):
-    # TinyStoriesInstruct variants may expose slightly different field names.
-    prompt = pick_first(
-        row,
-        ["instruction", "prompt", "question", "input", "summary", "features", "words"],
-    )
-    response = pick_first(
-        row,
-        ["output", "story", "response", "completion", "text", "answer"],
-    )
+def _build_record(lines):
+    """Turn a block of lines into {"prompt": ..., "response": ...}."""
+    if not lines:
+        return None
 
-    # Fallback for single-text-field datasets:
-    # if we only have a response-like string, use a generic instruction prompt.
-    if not prompt and response:
+    # Collect constraints from header lines
+    constraints = []
+    story_lines = []
+    in_story = False
+
+    for line in lines:
+        lower = line.lower()
+        if lower.startswith("features:"):
+            constraints.append(("features", line[9:].strip()))
+        elif lower.startswith("words:"):
+            constraints.append(("words", line[6:].strip()))
+        elif lower.startswith("summary:"):
+            constraints.append(("summary", line[8:].strip()))
+        elif lower.startswith("story:"):
+            in_story = True
+            remainder = line[6:].strip()
+            if remainder:
+                story_lines.append(remainder)
+        elif in_story and line:
+            story_lines.append(line)
+        elif not in_story and line:
+            # stray line before Story: — ignore
+            pass
+
+    if not story_lines:
+        return None
+
+    story_text = " ".join(story_lines)
+    if len(story_text) < 40:
+        return None
+
+    # Build a diverse prompt from constraints
+    prompt_parts = []
+    for ctype, cval in constraints:
+        if ctype == "features":
+            prompt_parts.append(f"with features: {cval}")
+        elif ctype == "words":
+            prompt_parts.append(f"using the words: {cval}")
+        elif ctype == "summary":
+            prompt_parts.append(f"about: {cval}")
+
+    if prompt_parts:
+        prompt = "Write a short story " + ", ".join(prompt_parts) + "."
+    else:
         prompt = "Write a short story."
 
-    # Last-resort fallback: pick longest available string as response and keep generic prompt.
-    if not response:
-        string_vals = [v.strip() for v in row.values() if isinstance(v, str) and v.strip()]
-        if string_vals:
-            response = max(string_vals, key=len)
-            if not prompt:
-                prompt = "Write a short story."
-
-    return {"prompt": prompt, "response": response}
+    return {"prompt": prompt, "response": story_text}
 
 
-def filter_valid(records):
-    out = []
-    for r in records:
-        if r["prompt"] and r["response"]:
-            out.append(r)
-    return out
-
-
-def write_jsonl(path, rows):
-    with open(path, "w") as f:
-        for r in rows:
-            f.write(json.dumps(r, ensure_ascii=False) + "\n")
-
-
-def stream_write_split(ds_split, out_path, split_name, log_every=500000):
+def stream_write_records(records, out_path, split_name, log_every=50000):
     written = 0
     skipped = 0
     with open(out_path, "w") as f:
-        for i, row in enumerate(ds_split):
-            rec = to_record(row)
+        for i, rec in enumerate(records):
             if rec["prompt"] and rec["response"]:
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
                 written += 1
@@ -75,7 +118,7 @@ def stream_write_split(ds_split, out_path, split_name, log_every=500000):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Prepare TinyStoriesInstruct SFT data with train/test/holdout_test splits."
+        description="Prepare TinyStoriesInstruct SFT data with real prompt diversity."
     )
     parser.add_argument("--out-dir", default="data/tinystories_instruct")
     parser.add_argument("--seed", type=int, default=1337)
@@ -86,7 +129,7 @@ def main():
         "--max-samples",
         type=int,
         default=None,
-        help="Cap total dataset size before splitting (default: use full dataset).",
+        help="Cap total stories before splitting (default: use full dataset).",
     )
     args = parser.parse_args()
 
@@ -101,33 +144,39 @@ def main():
         raise ValueError("Expected a train split in roneneldan/TinyStoriesInstruct")
     train_ds = ds["train"]
     print(f"Dataset columns: {train_ds.column_names}")
-    print(f"Full dataset size: {len(train_ds):,}")
+    print(f"Raw rows: {len(train_ds):,}")
 
-    if args.max_samples is not None and args.max_samples < len(train_ds):
-        train_ds = train_ds.shuffle(seed=args.seed).select(range(args.max_samples))
-        print(f"Using capped subset: {args.max_samples:,} samples")
+    print("Parsing story blocks...")
+    records = parse_stories(train_ds)
+    print(f"Extracted {len(records):,} stories")
 
-    first_split = train_ds.train_test_split(
-        test_size=(1.0 - args.train_ratio), seed=args.seed, shuffle=True
-    )
-    train_split = first_split["train"]
-    rem_split = first_split["test"]
+    # Quick diversity check
+    unique_prompts = set(r["prompt"] for r in records)
+    print(f"Unique prompts: {len(unique_prompts):,}")
+
+    if args.max_samples is not None and args.max_samples < len(records):
+        import random
+        random.seed(args.seed)
+        records = random.sample(records, args.max_samples)
+        print(f"Using capped subset: {args.max_samples:,} stories")
+
+    first_split_idx = int(len(records) * args.train_ratio)
+    train_records = records[:first_split_idx]
+    rem_records = records[first_split_idx:]
 
     rem_total = args.test_ratio + args.holdout_ratio
-    holdout_frac_in_rem = args.holdout_ratio / rem_total
-    second_split = rem_split.train_test_split(
-        test_size=holdout_frac_in_rem, seed=args.seed + 1, shuffle=True
-    )
-    test_split = second_split["train"]
-    holdout_split = second_split["test"]
+    holdout_frac = args.holdout_ratio / rem_total
+    second_split_idx = int(len(rem_records) * (1 - holdout_frac))
+    test_records = rem_records[:second_split_idx]
+    holdout_records = rem_records[second_split_idx:]
 
     train_path = os.path.join(args.out_dir, "train.jsonl")
     test_path = os.path.join(args.out_dir, "test.jsonl")
     holdout_path = os.path.join(args.out_dir, "holdout_test.jsonl")
 
-    train_written, _ = stream_write_split(train_split, train_path, "train")
-    test_written, _ = stream_write_split(test_split, test_path, "test")
-    holdout_written, _ = stream_write_split(holdout_split, holdout_path, "holdout_test")
+    train_written, _ = stream_write_records(train_records, train_path, "train")
+    test_written, _ = stream_write_records(test_records, test_path, "test")
+    holdout_written, _ = stream_write_records(holdout_records, holdout_path, "holdout_test")
 
     print(f"Saved: {train_path} ({train_written} rows)")
     print(f"Saved: {test_path} ({test_written} rows)")

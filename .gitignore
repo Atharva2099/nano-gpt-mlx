@@ -26,3 +26,6 @@ wandb/
 
 # OS
 Thumbs.db
+
+# Local scratchpads
+docs/changelog.md
